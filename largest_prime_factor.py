@@ -1,16 +1,19 @@
-# NEED TO IMPROVE SPEED!
-number = 13195
-factor = 1
-while factor <= number:
-	if number % factor == 0:
-		factor_2 = number / factor
-		is_prime = True
-		j = 2
-		while j <= factor_2:
-			if factor_2 % j == 0:
-				is_prime = False
-			j += 1
-		if is_prime:
-			print('Largest prime factor: %d' % factor_2)
-			break
-	factor += 1
+import math
+
+number = 600851475143
+largest_prime_factor = 0
+sqrt_number = int(math.ceil(math.sqrt(number)))
+for i in range(2, sqrt_number):
+	is_prime = True
+	if number % i == 0:
+		if i == 2 and i > largest_prime_factor:
+			largest_prime_factor = i
+		else:
+			for j in range(2, i):
+				if i % j == 0:
+					is_prime = False
+					break
+		if is_prime and i > largest_prime_factor:
+			largest_prime_factor = i
+
+print largest_prime_factor
